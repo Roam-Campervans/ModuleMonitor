@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     //need an activity that allows adding a pack
     public void goToAddPack(View view) {
-        Intent intent = new Intent(this, /*TODO: add class to go to*/);
+//        Intent intent = new Intent(this, /*TODO: add class to go to*/);
     }
 
 

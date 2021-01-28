@@ -1,8 +1,43 @@
 plugins {
     id 'com.android.application'
+    id "com.google.protobuf"
+}
+
+protobuf {
+    protoc {
+//        artifact = 'com.google.protobuf:protoc:3.14.0'
+        path = '/usr/local/bin/protoc'
+
+    }
+    plugins {
+        javalite {
+            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                remove java
+            }
+            task.plugins {
+                javalite { }
+            }
+        }
+    }
 }
 
 android {
+    sourceSets {
+        main {
+            proto {
+            }
+            java {
+            }
+        }
+    }
+
+
+
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -28,8 +63,9 @@ android {
     }
 }
 
-dependencies {
 
+dependencies {
+    implementation 'com.google.protobuf:protobuf-lite:3.0.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'

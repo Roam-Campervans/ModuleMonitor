@@ -1,2 +1,3 @@
+include ':protoBuf'
 include ':app'
 rootProject.name = "Tesla Module Monitor"
