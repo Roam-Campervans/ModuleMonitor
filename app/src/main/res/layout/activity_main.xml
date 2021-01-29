@@ -18,13 +18,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
+    <TextView
+        android:id="@+id/textViewDecode"
         android:layout_width="361dp"
         android:layout_height="691dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="Pack Info"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
