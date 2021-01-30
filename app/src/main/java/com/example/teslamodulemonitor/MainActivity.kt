@@ -1,22 +1,20 @@
-package com.example.tedslamodulemonitor
+package com.example.teslamodulemonitor
 
 import TeslaModuleMonitor.Test
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.teslamodulemonitor.R
-import com.example.teslamodulemonitor.addTestPack
-
 
 
 class MainActivity : AppCompatActivity() {
     companion object {
-        lateinit var allPacksList: ArrayList<Test.Pack>
+        var numOfPacks = 0
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
 
     }
@@ -24,7 +22,8 @@ class MainActivity : AppCompatActivity() {
     //need an activity that allows adding a pack
     fun goToAddPack(view: View?) {
         val intent = Intent(this, addTestPack::class.java)
-        startActivity(intent)
+        startActivityForResult(intent,1)
     }
+        // Handle the returned Uri
     //need an activity that shows pack module and cell values
 }
