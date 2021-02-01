@@ -1,10 +1,17 @@
 package com.example.teslamodulemonitor
 
 import TeslaModuleMonitor.Test
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.teslamodulemonitor.MainActivity.Companion.numOfPacks
+import java.io.File
+//import com.sun.tools.javac.tree.TreeInfo.args
+import java.io.FileOutputStream
+
+
+private const val TAG = "AddTestPack"
 
 class addTestPack : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,20 +37,26 @@ class addTestPack : AppCompatActivity() {
 
 //      create a old for our pack
         val pack = newPack.build()
-
-
-
-
-         displayPackValues(findViewById(R.id.packDataView), pack)
+        write(pack)
+        displayPackValues(findViewById(R.id.packDataView), pack)
 
 //        Encode the pack
+
 
 
 //        pass it back
 
     }
-//    generates Modules
-    private fun modMaker(numberOfTestMods: Int, cellvolt: Float , modTemp: Float , packBuilder: Test.Pack.Builder) {
+
+    private fun write(pack: Test.Pack){
+        var pbFile = File(filesDir,"protoOut")
+        pack.writeTo(pbFile?.outputStream())
+        Log.i(TAG, "write: ${filesDir.absoluteFile}")
+    }
+
+
+        //    generates Modules
+    private fun modMaker(numberOfTestMods: Int, cellvolt: Float, modTemp: Float, packBuilder: Test.Pack.Builder) {
         var modBuilder: Test.Pack.Module.Builder = Test.Pack.Module.newBuilder()
         for(i in 0 until numberOfTestMods) {
             modBuilder.setId(i.toString())
@@ -66,7 +79,7 @@ class addTestPack : AppCompatActivity() {
         }
     }
 //     generates a random 2point decimal by taking you low and high times 100 ie "3.2 -> 320 & 4.2 -> 420"
-    fun randomTwoPointDecimal(yourMinTimes100: Int, yourMaxTimes100: Int ):Float{
+    fun randomTwoPointDecimal(yourMinTimes100: Int, yourMaxTimes100: Int):Float{
         val rnds = (yourMinTimes100..yourMaxTimes100).random()
         return rnds.times(0.01).toFloat()
     }
@@ -74,7 +87,7 @@ class addTestPack : AppCompatActivity() {
     fun displayPackValues(textView: TextView, pack: Test.Pack){
     var str = StringBuilder()
     str.append("Pack name: ${pack.packName}\nPack Voltage:${pack.currentVoltage}\nPack Temp:${pack.averagePacktemp}\n"
-    + "Number of modules in ${pack.packName} is: ${pack.numberOfModules}\n")
+            + "Number of modules in ${pack.packName} is: ${pack.numberOfModules}\n")
         for (mod in pack.modulesList){
             str.append("Module ${mod.id} is ${mod.moduleVoltage}V and ${mod.moduleTemp}DegC\n" +
                     "Highest voltage cell is ${mod.highestCellVolt}V\n" +
