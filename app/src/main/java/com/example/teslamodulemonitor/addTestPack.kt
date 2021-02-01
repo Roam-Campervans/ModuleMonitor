@@ -35,19 +35,17 @@ class addTestPack : AppCompatActivity() {
         modMaker(numberOfTestMods, cellVolt, modTemp, newPack)
 
 
-//      create a old for our pack
+//        Create a holder for our pack
         val pack = newPack.build()
-        write(pack)
-        displayPackValues(findViewById(R.id.packDataView), pack)
-
 //        Encode the pack
-
-
-
-//        pass it back
-
+        write(pack)
+//        Show values stored in pack(this is not the decoded values)
+        displayPackValues(findViewById(R.id.packDataView), pack)
     }
 
+
+//    Function to encode and write to local file for decoding
+//    file output is "/data/user/0/com.example.teslamodulemonitor/files"
     private fun write(pack: Test.Pack){
         var pbFile = File(filesDir,"protoOut")
         pack.writeTo(pbFile?.outputStream())
