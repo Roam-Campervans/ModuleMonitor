@@ -21,7 +21,7 @@ message Pack {
     message Cell{
       required int32 cellId = 1;
       required float cellVolt = 2;
-      required string balanceState = 3;
+//      required string balanceState = 3
     }
   }
 }
