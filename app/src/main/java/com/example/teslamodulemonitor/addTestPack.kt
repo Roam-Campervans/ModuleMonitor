@@ -35,13 +35,10 @@ class addTestPack : AppCompatActivity() {
         modMaker(numberOfTestMods, cellVolt, modTemp, newPack)
 
 
-//        Create a holder for our pack
-        val pack = newPack.build()
-//        Encode the pack
-        write(pack)
-//        Show values stored in pack(this is not the decoded values)
-        displayPackValues(findViewById(R.id.packDataView), pack)
-    }
+//        Encode and write the pack to filesdir thne close activity
+        write(newPack.build())
+        finish()
+}
 
 
 //    Function to encode and write to local file for decoding
@@ -76,25 +73,11 @@ class addTestPack : AppCompatActivity() {
             )
         }
     }
+
 //     generates a random 2point decimal by taking you low and high times 100 ie "3.2 -> 320 & 4.2 -> 420"
     fun randomTwoPointDecimal(yourMinTimes100: Int, yourMaxTimes100: Int):Float{
         val rnds = (yourMinTimes100..yourMaxTimes100).random()
         return rnds.times(0.01).toFloat()
-    }
-
-    fun displayPackValues(textView: TextView, pack: Test.Pack){
-    var str = StringBuilder()
-    str.append("Pack name: ${pack.packName}\nPack Voltage:${pack.currentVoltage}\nPack Temp:${pack.averagePacktemp}\n"
-            + "Number of modules in ${pack.packName} is: ${pack.numberOfModules}\n")
-        for (mod in pack.modulesList){
-            str.append("Module ${mod.id} is ${mod.moduleVoltage}V and ${mod.moduleTemp}DegC\n" +
-                    "Highest voltage cell is ${mod.highestCellVolt}V\n" +
-                    "Lowest voltage cell is ${mod.lowestCellVolt}V \n")
-                    for (cell in mod.cellsList){
-                        str.append("Cell${cell.cellId} is ${cell.cellVolt}V\n")
-                    }
-        }
-        textView.text = str
     }
 
 }
