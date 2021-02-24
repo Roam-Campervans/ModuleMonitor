@@ -12,6 +12,7 @@ import com.example.teslamodulemonitor.R
 import com.example.teslamodulemonitor.addTestPack
 import java.io.File
 import java.io.FileInputStream
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,16 +31,20 @@ class MainActivity : AppCompatActivity() {
         renderPack("SOME KEY FOR INTENT")
     }
 
-    fun renderPack(strExtra: String) {
+    private fun renderPack(strExtra: String) {
         // Steps to decode/display packs from protocol buffer
         // 1. Get input stream or uri to file
         val file = File(filesDir, "protoOut")
         if (file.exists()) {
             // 2. Parse incoming steam into message object
             val inputStream = FileInputStream(file)
+            val scr = Scanner(inputStream)
             val pack = Test.Pack.parseFrom(inputStream)
             Log.i("packStreamTest", pack.packName)
             Log.i("packStreamTest", pack.toString())
+            scr.hasNextByte()
+            print("Byte array: " + pack.toByteArray())
+
 
             // 3. Set fields into View
             val textView = findViewById<TextView>(R.id.textViewDecode)

@@ -13,31 +13,34 @@
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="50dp"
         android:clickable="true"
+        android:contentDescription="@string/add_a_new_pack_button"
         android:onClick="goToAddPack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
-    <TextView
-        android:id="@+id/textViewDecode"
-        android:layout_width="382dp"
-        android:layout_height="654dp"
-        android:fontFamily="sans-serif-light"
-        android:letterSpacing=".1"
-        android:lineSpacingExtra="14sp"
-        android:nestedScrollingEnabled="true"
-        android:padding="3px"
-        android:paddingLeft="3px"
-        android:paddingTop="3px"
-        android:paddingRight="3px"
-        android:paddingBottom="3px"
-        android:text='Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.  '
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:typeface="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.493" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="59dp"
+        tools:layout_editor_absoluteY="21dp">
+
+        <TextView
+            android:id="@+id/textViewDecode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:letterSpacing=".1"
+            android:lineSpacingExtra="14sp"
+            android:nestedScrollingEnabled="true"
+            android:padding="3dp"
+            android:paddingLeft="3dp"
+            android:paddingTop="3dp"
+            android:paddingRight="3dp"
+            android:paddingBottom="3dp"
+            android:text="@string/contrary_to_popular_belief"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:typeface="normal" />
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

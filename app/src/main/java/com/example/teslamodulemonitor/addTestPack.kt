@@ -3,12 +3,11 @@ package com.example.teslamodulemonitor
 import TeslaModuleMonitor.Test
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.teslamodulemonitor.MainActivity.Companion.numOfPacks
+import java.io.BufferedReader
 import java.io.File
-//import com.sun.tools.javac.tree.TreeInfo.args
-import java.io.FileOutputStream
+import java.io.FileReader
 
 
 private const val TAG = "AddTestPack"
@@ -36,21 +35,26 @@ class addTestPack : AppCompatActivity() {
 
 
 //        Encode and write the pack to filesdir thne close activity
+
         write(newPack.build())
         finish()
 }
 
 
-//    Function to encode and write to local file for decoding
-//    file output is "/data/user/0/com.example.teslamodulemonitor/files"
+//*************************** Helper Functions ***********************************
+
+
+    /** Encode and write to local file for decoding */
     private fun write(pack: Test.Pack){
+
         var pbFile = File(filesDir,"protoOut")
+//    file output is "/data/user/0/com.example.teslamodulemonitor/files"
         pack.writeTo(pbFile?.outputStream())
         Log.i(TAG, "write: ${filesDir.absoluteFile}")
     }
 
 
-        //    generates Modules
+    /** Generates Modules */
     private fun modMaker(numberOfTestMods: Int, cellvolt: Float, modTemp: Float, packBuilder: Test.Pack.Builder) {
         var modBuilder: Test.Pack.Module.Builder = Test.Pack.Module.newBuilder()
         for(i in 0 until numberOfTestMods) {
@@ -64,7 +68,9 @@ class addTestPack : AppCompatActivity() {
             modBuilder.clear()
         }
     }
-//    generates cells for each module
+
+
+    /** Generates cells for each module */
     private fun cellMaker(cellvolt: Float, modbuilder: Test.Pack.Module.Builder){
         for(i in 0 until 6) {
             modbuilder.addCells(Test.Pack.Module.Cell.newBuilder()
@@ -74,7 +80,7 @@ class addTestPack : AppCompatActivity() {
         }
     }
 
-//     generates a random 2point decimal by taking you low and high times 100 ie "3.2 -> 320 & 4.2 -> 420"
+    /** Generates a random 2point decimal by taking your low and high times 100 ie "3.2 -> 320 & 4.2 -> 420 */
     fun randomTwoPointDecimal(yourMinTimes100: Int, yourMaxTimes100: Int):Float{
         val rnds = (yourMinTimes100..yourMaxTimes100).random()
         return rnds.times(0.01).toFloat()
