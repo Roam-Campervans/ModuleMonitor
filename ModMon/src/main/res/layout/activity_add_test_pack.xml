@@ -19,7 +19,6 @@
         android:paddingTop="3dp"
         android:paddingRight="3dp"
         android:paddingBottom="3dp"
-        android:text="@string/contrary_to_popular_belief"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"

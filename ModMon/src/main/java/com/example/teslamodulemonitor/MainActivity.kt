@@ -38,12 +38,11 @@ class MainActivity : AppCompatActivity() {
         if (file.exists()) {
             // 2. Parse incoming steam into message object
             val inputStream = FileInputStream(file)
-            val scr = Scanner(inputStream)
+            Log.i("llama", "$inputStream     lllllllllAAAAAAAMMMMMMMAAAAAAA")
             val pack = Test.Pack.parseFrom(inputStream)
             Log.i("packStreamTest", pack.packName)
             Log.i("packStreamTest", pack.toString())
-            scr.hasNextByte()
-            print("Byte array: " + pack.toByteArray())
+
 
 
             // 3. Set fields into View
@@ -52,6 +51,8 @@ class MainActivity : AppCompatActivity() {
             displayPackValues(textView, pack)
         }
     }
+
+
 
     //need an activity that allows adding a pack
     fun goToAddPack(view: View?) {
