@@ -6,10 +6,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.teslamodulemonitor.R
 import com.example.teslamodulemonitor.addTestPack
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.File
 import java.io.FileInputStream
 import java.util.*
@@ -23,12 +27,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        findViewById<FloatingActionButton>(R.id.floatingActionButton2).setOnClickListener {
+            showAddPackDialog(it)
+        }
     }
 
     override fun onResume() {
         super.onResume()
 
         renderPack("SOME KEY FOR INTENT")
+    }
+
+    private fun showAddPackDialog(view: View?) {
+
+        val alertDialog = AlertDialog.Builder(this).create()
+
+//        alertDialog.setTitle("Generate new sample pack")
+//        alertDialog.setMessage("Testing simple alert")
+//        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", { dialogInterface, i ->
+//            goToAddPack(view)
+//        })
+
+        val customLayout = findViewById<FrameLayout>(R.id.add_pack_dialog_layout)
+//        customLayout.addView(view)
+        alertDialog.setView(customLayout)
+        alertDialog.show()
     }
 
     private fun renderPack(strExtra: String) {
