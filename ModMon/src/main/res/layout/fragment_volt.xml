@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/voltFrag"
-    android:layout_width="80dp"
+    android:id="@+id/ValueHolderFrag"
+    android:layout_width="90dp"
     android:layout_height="wrap_content"
     android:background="#00FFFFFF"
     tools:context=".VoltFrag">
@@ -11,30 +11,34 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="65dp"
-        android:text="@string/volts"
+        android:id="@+id/nameOfHeldValue"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginTop="5dp"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="name" />
 
     <TextView
-        android:id="@+id/voltValue"
-        android:layout_width=""
+        android:id="@+id/value"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/temp_volt_value_holder"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_rect"
         android:padding="5dp"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="@+id/nameOfHeldValue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        tools:text="24.1" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/nameOfHeldValue"
+        app:layout_constraintTop_toBottomOf="@+id/nameOfHeldValue"
+        app:layout_constraintVertical_bias="0.711"
+        tools:text="value" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
