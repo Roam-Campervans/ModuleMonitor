@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="com.example.teslamodulemonitor.VoltFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/fragment3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView4" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="57dp"
@@ -20,6 +29,7 @@
         app:srcCompat="@android:drawable/ic_menu_add" />
 
     <ScrollView
+        android:id="@+id/scrollView4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="59dp"
@@ -42,5 +52,13 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:typeface="normal" />
     </ScrollView>
+
+    <fragment
+        android:id="@+id/fragment3"
+        android:name="com.example.teslamodulemonitor.VoltFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment2"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
