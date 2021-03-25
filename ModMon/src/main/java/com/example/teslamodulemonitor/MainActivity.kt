@@ -2,19 +2,12 @@ package com.example.teslamodulemonitor
 
 import TeslaModuleMonitor.Test
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.teslamodulemonitor.R
-import com.example.teslamodulemonitor.addTestPack
 import java.io.File
 import java.io.FileInputStream
-import java.util.*
-
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -23,6 +16,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
 
     }
 
@@ -35,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private fun renderPack() {
         // Steps to decode/display packs from protocol buffer
         // 1. Get input stream or uri to file
+
         val file = File(filesDir, "protoOut")
         if (file.exists()) {
             // 2. Parse incoming steam into message object
@@ -47,10 +43,9 @@ class MainActivity : AppCompatActivity() {
 
 
             // 3. Set fields into View
-            val textView = findViewById<TextView>(R.id.textViewDecode)
             // pass textView and Pack to render function
 
-            displayPackValues(textView, pack)
+            displayPackValues(pack)
         }
     }
 
@@ -59,15 +54,18 @@ class MainActivity : AppCompatActivity() {
     //need an activity that allows adding a pack
     fun goToAddPack(view: View?) {
         val intent = Intent(this, addTestPack::class.java)
-        startActivityForResult(intent,1)
+        startActivityForResult(intent, 1)
     }
         // Handle the returned Uri
     //need an activity that shows pack module and cell values
 
-    fun displayPackValues(textView: TextView, pack: Test.Pack, ){
-        val vhf= findViewById<ConstraintLayout>(R.id.lon)
-        vhf.findViewById<TextView>(R.id.nameOfHeldValue).setText("Pack Voltage")
-        vhf.findViewById<TextView>(R.id.value).setText("${pack.currentVoltage}")
+    fun displayPackValues(pack: Test.Pack){
+//        val newFrag = ValueHolderFrag.newInstance("name","value").
+//        val vhf= findViewById<ConstraintLayout>(R.id.lon)
+//        vhf.findViewById<TextView>(R.id.nameOfHeldValue).setText("Pack Voltage")
+//        vhf.findViewById<TextView>(R.id.value).setText("${pack.currentVoltage}")
+
+        val packFrag = PackFrag.newInstance("name", "value")
 
         var str = StringBuilder()
         str.append("Pack name: ${pack.packName}\nPack Voltage:${pack.currentVoltage}\nPack Temp:${pack.averagePacktemp}\n"
@@ -81,6 +79,13 @@ class MainActivity : AppCompatActivity() {
                 str.append("Cell${cell.cellId} is ${cell.cellVolt}V\n")
             }
         }
-        textView.text = str
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val file = File(filesDir, "protoOut")
+        if (file.exists()) {
+            file.delete()
+        }
     }
 }

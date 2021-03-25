@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="57dp"
@@ -19,39 +20,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-41dp"
-        tools:layout_editor_absoluteY="75dp">
-
-        <TextView
-            android:id="@+id/textViewDecode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:letterSpacing=".1"
-            android:lineSpacingExtra="14sp"
-            android:nestedScrollingEnabled="true"
-            android:padding="3dp"
-            android:paddingLeft="3dp"
-            android:paddingTop="3dp"
-            android:paddingRight="3dp"
-            android:paddingBottom="3dp"
-            android:text="@string/contrary_to_popular_belief"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:typeface="normal" />
-    </ScrollView>
-
-    <fragment
-        android:id="@+id/lon"
-        android:name="com.example.teslamodulemonitor.ValueHolderFrag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="98dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/packRecycler_main"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/scrollView2" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
