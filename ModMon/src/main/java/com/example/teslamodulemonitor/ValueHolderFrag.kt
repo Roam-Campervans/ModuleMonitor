@@ -48,12 +48,15 @@ class ValueHolderFrag : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(name: String?, value: Float) =
+        fun newInstance(name: String?, value: Float?) =
                 ValueHolderFrag().apply {
                     arguments = Bundle().apply {
                         putString(NAME, name)
-                        putFloat(VALUE, value)
+                        if (value != null) {
+                            putFloat(VALUE, value)
+                        }
                     }
                 }
+
     }
 }

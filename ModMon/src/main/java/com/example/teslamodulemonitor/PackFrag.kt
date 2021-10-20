@@ -31,8 +31,8 @@ class PackFrag : Fragment() {
             name = it.getString(NAME)
             volts = it.getFloat(VOLTS)
             temp = it.getFloat(TEMP)
-            voltholder = ValueHolderFrag.newInstance("Volts", volts!!)
-            tempholder = ValueHolderFrag.newInstance("Temp", temp!!)
+            voltholder = ValueHolderFrag.newInstance("Volts", volts)
+            tempholder = ValueHolderFrag.newInstance("Temp", temp)
         }
     }
 
@@ -54,7 +54,7 @@ class PackFrag : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(name: String, volts: Float, temp: Float) =
+        fun newInstance(name: String?, volts: Float, temp: Float) =
                 PackFrag().apply {
                     arguments = Bundle().apply {
                         putString(NAME, name)

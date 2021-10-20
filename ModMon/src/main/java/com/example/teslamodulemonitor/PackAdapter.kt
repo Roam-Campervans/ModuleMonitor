@@ -15,18 +15,14 @@ class PackAdapter(private val packs: ArrayList<Test.Pack>) :
      * (custom ViewHolder).
      */
     class PackViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView
-        val packVoltFrag: ValueHolderFrag
-        val packTempFrag: ValueHolderFrag
+         val textView: TextView
 
 
 //        Constructor!!!
         init {
-            // Define click listener for the ViewHolder's View.
+//           TODO: Define click listener for the ViewHolder's View.
 //            Define fillable fields and fragments
             textView =view.findViewById(R.id.packName)
-            packVoltFrag = ValueHolderFrag.newInstance("Volts",0f)
-            packTempFrag = ValueHolderFrag.newInstance("Temp",0f)
 
         }
     }
@@ -53,8 +49,6 @@ class PackAdapter(private val packs: ArrayList<Test.Pack>) :
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         packViewHolder.textView.text = packs[position].packName
-
-//        val voltView = LayoutInflater.from(viewGroup.context).inflate(R.layout.fragment_valueholder,viewGroup,false)
 
     }
 
