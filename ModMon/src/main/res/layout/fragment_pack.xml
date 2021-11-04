@@ -7,32 +7,36 @@
     android:layout_height="wrap_content"
     tools:context=".PackFrag">
 
-    <fragment
-        android:id="@+id/packVolts"
-        android:name="com.example.teslamodulemonitor.ValueHolderFrag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/packTemp"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <fragment
-        android:id="@+id/packTemp"
-        android:name="com.example.teslamodulemonitor.ValueHolderFrag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/packName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/packVolts"
-        app:layout_constraintEnd_toStartOf="@+id/packVolts"
-        app:layout_constraintHorizontal_bias="0.307"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/packVolts"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="name" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/voltHolder"
+        android:name="com.example.teslamodulemonitor.ValueHolderFrag"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tempHolder"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_valueholder" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/tempHolder"
+        android:name="com.example.teslamodulemonitor.ValueHolderFrag"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_valueholder" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

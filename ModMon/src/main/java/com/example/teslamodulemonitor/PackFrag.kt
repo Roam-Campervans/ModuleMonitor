@@ -22,8 +22,7 @@ class PackFrag : Fragment() {
     private var name: String? = null
     private var volts: Float? = null
     private var temp: Float? = null
-    private var voltholder: ValueHolderFrag? = null
-    private var tempholder: ValueHolderFrag? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +30,6 @@ class PackFrag : Fragment() {
             name = it.getString(NAME)
             volts = it.getFloat(VOLTS)
             temp = it.getFloat(TEMP)
-            voltholder = ValueHolderFrag.newInstance("Volts", volts)
-            tempholder = ValueHolderFrag.newInstance("Temp", temp)
         }
     }
 

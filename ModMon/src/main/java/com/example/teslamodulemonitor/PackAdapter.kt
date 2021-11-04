@@ -1,10 +1,12 @@
 package com.example.teslamodulemonitor
 
 import TeslaModuleMonitor.Test
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.FragmentContainerView
 import androidx.recyclerview.widget.RecyclerView
 
 class PackAdapter(private val packs: ArrayList<Test.Pack>) :
@@ -16,6 +18,8 @@ class PackAdapter(private val packs: ArrayList<Test.Pack>) :
      */
     class PackViewHolder(view: View) : RecyclerView.ViewHolder(view) {
          val textView: TextView
+         val voltHolder: View
+
 
 
 //        Constructor!!!
@@ -23,21 +27,22 @@ class PackAdapter(private val packs: ArrayList<Test.Pack>) :
 //           TODO: Define click listener for the ViewHolder's View.
 //            Define fillable fields and fragments
             textView =view.findViewById(R.id.packName)
+            voltHolder = FragmentContainerView.inflate()
+            val tempHolder: View
 
         }
     }
 
-//    abstract class BaseViewHolder(view: View): RecyclerView.ViewHolder(view){
-//        abstract fun onBind(test: Test.Pack) {
-//
-//        }
-//    }
+    abstract class BaseViewHolder(view: View): RecyclerView.ViewHolder(view){
+        fun onBind(test: Test.Pack) {
+
+        }
+    }
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): PackViewHolder {
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.fragment_pack, viewGroup, false)
-
         return PackViewHolder(view)
     }
 
@@ -49,6 +54,7 @@ class PackAdapter(private val packs: ArrayList<Test.Pack>) :
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         packViewHolder.textView.text = packs[position].packName
+
 
     }
 
