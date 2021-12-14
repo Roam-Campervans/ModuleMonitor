@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 // TODO: Rename parameter arguments, choose names that match
@@ -17,26 +18,34 @@ private const val TEMP = "temp"
  * Use the [PackFrag.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PackFrag : Fragment() {
+class PackFrag : Fragment()  {
     // TODO: Rename and change types of parameters
     private var name: String? = null
-    private var volts: Float? = null
-    private var temp: Float? = null
+    private lateinit var tempHolder: ValueHolderFrag
+    private lateinit var voltHolder: ValueHolderFrag
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             name = it.getString(NAME)
-            volts = it.getFloat(VOLTS)
-            temp = it.getFloat(TEMP)
+            tempHolder = arguments?.let {ValueHolderFrag.newInstance("Temp", it.getFloat(TEMP))}!!
+            voltHolder = arguments?.let {ValueHolderFrag.newInstance("Volts",it. getFloat(VOLTS))}!!
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pack, container, false)
+        var view = inflater.inflate(R.layout.fragment_pack, container, false)
+        // Create the Volt and Temp Fragments
+        this.parentFragmentManager.beginTransaction().add(R.id.tempHolder,tempHolder).commit()
+        this .parentFragmentManager.beginTransaction().add(R.id.voltHolder,voltHolder).commit()
+        var packName : TextView = view.findViewById(R.id.packName)
+        packName.setText(name)
+        return view
     }
 
     companion object {

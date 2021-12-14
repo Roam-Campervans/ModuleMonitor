@@ -1,12 +1,9 @@
 package com.example.teslamodulemonitor
 
 import TeslaModuleMonitor.Test
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.FragmentContainerView
 import androidx.recyclerview.widget.RecyclerView
 
 class PackAdapter(private val packs: ArrayList<Test.Pack>) :
@@ -17,18 +14,11 @@ class PackAdapter(private val packs: ArrayList<Test.Pack>) :
      * (custom ViewHolder).
      */
     class PackViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-         val textView: TextView
-         val voltHolder: View
+        lateinit var packFrag : PackFrag
 
-
-
-//        Constructor!!!
         init {
 //           TODO: Define click listener for the ViewHolder's View.
 //            Define fillable fields and fragments
-            textView =view.findViewById(R.id.packName)
-            voltHolder = FragmentContainerView.inflate()
-            val tempHolder: View
 
         }
     }
@@ -53,12 +43,10 @@ class PackAdapter(private val packs: ArrayList<Test.Pack>) :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        packViewHolder.textView.text = packs[position].packName
-
-
+        var pack = packs[position]
+        packViewHolder.packFrag = PackFrag.newInstance(pack.packName,pack.currentVoltage,pack.averagePacktemp)
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = packs.size
-
 }
