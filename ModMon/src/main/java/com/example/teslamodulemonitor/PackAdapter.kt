@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.FragmentContainerView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
 class PackAdapter(packs: ArrayList<Test.Pack>) : RecyclerView.Adapter<PackAdapter.PackViewHolder>() {
@@ -18,20 +18,29 @@ class PackAdapter(packs: ArrayList<Test.Pack>) : RecyclerView.Adapter<PackAdapte
     class PackViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         lateinit var pack: Test.Pack
         var packName: TextView = view.findViewById(R.id.packName)
-        var voltHolder: TextView = view.findViewById(R.id.voltHolder)
-        var tempHolderFrag: TextView =view.findViewById(R.id.tempHolder)
-
+        var voltHolder: ConstraintLayout = view.findViewById(R.id.voltHolder)
+        var tempHolder: ConstraintLayout = view.findViewById(R.id.tempHolder)
 
         init {
 //           TODO: Define click listener for the ViewHolder's View.
 //            Define fillable fields and fragments
+            LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, view.findViewById(R.id.voltHolder))
+            LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, view.findViewById(R.id.tempHolder))
+
 
         }
 
         fun bindPack(pack: Test.Pack){
             this.pack = pack
+//            Set Name
             this.packName.setText(pack.packName)
-            this.voltHolder =
+//            Set Voltage
+            this.voltHolder.findViewById<TextView>(R.id.nameOfHeldValue).setText("Volts")
+            this.voltHolder.findViewById<TextView>(R.id.value).setText(pack.currentVoltage.toString())
+//            Set Temp
+            this.tempHolder.findViewById<TextView>(R.id.nameOfHeldValue).setText("Temp")
+            this.tempHolder.findViewById<TextView>(R.id.value).setText(pack.averagePacktemp.toString())
+
         }
 
 
@@ -40,7 +49,8 @@ class PackAdapter(packs: ArrayList<Test.Pack>) : RecyclerView.Adapter<PackAdapte
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): PackViewHolder {
         // Create a new view, which defines the UI of the list item
-        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.fragment_pack, viewGroup, false)
+        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.pack_viewholder_layout, viewGroup, false)
+
         return PackViewHolder(view)
     }
 
