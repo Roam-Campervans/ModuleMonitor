@@ -4,6 +4,8 @@ import TeslaModuleMonitor.Test
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.fragment.app.FragmentContainerView
 import androidx.recyclerview.widget.RecyclerView
 
 class PackAdapter(packs: ArrayList<Test.Pack>) : RecyclerView.Adapter<PackAdapter.PackViewHolder>() {
@@ -15,19 +17,21 @@ class PackAdapter(packs: ArrayList<Test.Pack>) : RecyclerView.Adapter<PackAdapte
      */
     class PackViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         lateinit var pack: Test.Pack
-        lateinit var packFrag: PackFrag
+        var packName: TextView = view.findViewById(R.id.packName)
+        var voltHolder: TextView = view.findViewById(R.id.voltHolder)
+        var tempHolderFrag: TextView =view.findViewById(R.id.tempHolder)
 
 
         init {
 //           TODO: Define click listener for the ViewHolder's View.
 //            Define fillable fields and fragments
-         }
+
+        }
 
         fun bindPack(pack: Test.Pack){
             this.pack = pack
-            packFrag = PackFrag.newInstance(pack.packName,pack.currentVoltage,pack.averagePacktemp)
-
-
+            this.packName.setText(pack.packName)
+            this.voltHolder =
         }
 
 

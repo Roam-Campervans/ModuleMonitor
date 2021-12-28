@@ -68,5 +68,6 @@ class PackFrag : Fragment()  {
                         putFloat(TEMP, temp)
                     }
                 }
+
     }
 }
