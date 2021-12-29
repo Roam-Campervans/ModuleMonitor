@@ -21,7 +21,6 @@ class PackAdapter(packs: ArrayList<Test.Pack>) : RecyclerView.Adapter<PackAdapte
         var packName: TextView = view.findViewById(R.id.packName)
         var voltHolder: ConstraintLayout = view.findViewById(R.id.voltHolder)
         var tempHolder: ConstraintLayout = view.findViewById(R.id.tempHolder)
-//        lateinit var listener: View.OnClickListener
 
         init {
 //           TODO: Define click listener for the ViewHolder's View.
@@ -61,26 +60,24 @@ class PackAdapter(packs: ArrayList<Test.Pack>) : RecyclerView.Adapter<PackAdapte
         }
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    //Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(packViewHolder: PackViewHolder, position: Int) {
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
+        //Get pack at this position
         packViewHolder.pack = packs.get(position)
+        //Replace the contents of the view with that element
         packViewHolder.packName.setText(packViewHolder.pack.packName)
-//            Set Voltage
+        //TODO:make this pretty
+
         packViewHolder.voltHolder.findViewById<TextView>(R.id.nameOfHeldValue).setText("Volts")
         packViewHolder.voltHolder.findViewById<TextView>(R.id.value).setText(packViewHolder.pack.currentVoltage.toString())
-//            Set Temp
         packViewHolder.tempHolder.findViewById<TextView>(R.id.nameOfHeldValue).setText("Temp")
         packViewHolder.tempHolder.findViewById<TextView>(R.id.value).setText(packViewHolder.pack.averagePacktemp.toString())
-
-       //Need to add it but no FragmentManager :(
-
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+//    Return the size of the dataset (invoked by the layout manager)
     override fun getItemCount() = packs.size
 
+//    Adapted from https://stackoverflow.com/questions/29424944/recyclerview-itemclicklistener-in-kotlin
     fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T {
         itemView.setOnClickListener {
             event.invoke(getAdapterPosition(), getItemViewType())

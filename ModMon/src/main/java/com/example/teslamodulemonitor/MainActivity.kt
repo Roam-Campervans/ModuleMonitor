@@ -15,7 +15,7 @@ import java.io.FileInputStream
 class MainActivity : AppCompatActivity() {
     companion object {
         var numOfPacks = 0
-        var packs: ArrayList<Test.Pack> = ArrayList<Test.Pack>()
+        var packs: ArrayList<Test.Pack> = ArrayList()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = PackAdapter(packs)
     }
+
+//    TODO: Figure out why the last pack persists after quiting app and fix it
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
@@ -36,18 +38,16 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun renderPack() {
-        // Steps to decode/display packs from protocol buffer
+    // Steps to decode/display packs from protocol buffer
         // 1. Get input stream or uri to file
-
         val file = File(filesDir, "protoOut")
         if (file.exists()) {
-            // 2. Parse incoming steam into message object
+        // 2. Parse incoming steam into message object
             val inputStream = FileInputStream(file)
             val pack = Test.Pack.parseFrom(inputStream)
             Logger.i("packStreamTest", pack.packName)
             Logger.i("packStreamTest", pack.toString())
-
-            // 3. Set fields into View
+        // 3. Set fields into View
             // pass textView and Pack to render function
             packs.add(pack)
             displayPackValues(pack)
