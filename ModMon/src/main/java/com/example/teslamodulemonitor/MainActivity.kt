@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         val file = File(filesDir, "protoOut")
         if (file.exists()) {
             file.delete()
+            Toast.makeText(this,"Proto Deleted",Toast.LENGTH_SHORT).show()
         }
     }
 }
