@@ -6,14 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <fragment
-        android:id="@+id/fragment2"
-        android:name="com.example.teslamodulemonitor.VoltFrag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/fragment3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/scrollView4" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -28,30 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
-    <ScrollView
-        android:id="@+id/scrollView4"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="59dp"
-        tools:layout_editor_absoluteY="21dp">
 
-        <TextView
-            android:id="@+id/textViewDecode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:letterSpacing=".1"
-            android:lineSpacingExtra="14sp"
-            android:nestedScrollingEnabled="true"
-            android:padding="3dp"
-            android:paddingLeft="3dp"
-            android:paddingTop="3dp"
-            android:paddingRight="3dp"
-            android:paddingBottom="3dp"
-            android:text="@string/contrary_to_popular_belief"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:typeface="normal" />
-    </ScrollView>
 
     <fragment
         android:id="@+id/fragment3"

@@ -2,12 +2,9 @@ package com.example.teslamodulemonitor
 
 import TeslaModuleMonitor.Test
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.teslamodulemonitor.MainActivity.Companion.numOfPacks
-import java.io.BufferedReader
 import java.io.File
-import java.io.FileReader
 
 
 private const val TAG = "AddTestPack"
@@ -34,7 +31,7 @@ class addTestPack : AppCompatActivity() {
         modMaker(numberOfTestMods, cellVolt, modTemp, newPack)
 
 
-//        Encode and write the pack to filesdir thne close activity
+//        Encode and write the pack to files dir then close activity
 
         write(newPack.build())
         finish()
@@ -50,7 +47,7 @@ class addTestPack : AppCompatActivity() {
         var pbFile = File(filesDir,"protoOut")
 //    file output is "/data/user/0/com.example.teslamodulemonitor/files"
         pack.writeTo(pbFile?.outputStream())
-        Log.i(TAG, "write: ${filesDir.absoluteFile}")
+        Logger.i(TAG, "write: ${filesDir.absoluteFile}")
     }
 
 

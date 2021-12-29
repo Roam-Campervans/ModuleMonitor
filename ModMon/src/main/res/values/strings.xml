@@ -3,4 +3,6 @@
     <string name="contrary_to_popular_belief">Contrary to popular belief</string>
     <string name="add_a_new_pack_button">add a new pack button</string>
     <string name="volts">Volts</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
