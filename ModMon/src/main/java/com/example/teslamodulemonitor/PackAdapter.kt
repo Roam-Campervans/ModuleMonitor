@@ -1,11 +1,12 @@
 package com.example.teslamodulemonitor
 
 import TeslaModuleMonitor.Test
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
@@ -21,63 +22,97 @@ class PackAdapter(packs: ArrayList<Test.Pack>) : RecyclerView.Adapter<PackAdapte
         var packName: TextView = view.findViewById(R.id.packName)
         var voltHolder: ConstraintLayout = view.findViewById(R.id.voltHolder)
         var tempHolder: ConstraintLayout = view.findViewById(R.id.tempHolder)
+        var moduleCount: TextView = view.findViewById(R.id.moduleCount)
 
         init {
-//           TODO: Define click listener for the ViewHolder's View.
-//            Define fillable fields and fragments
-
-//            = View.OnClickListener { v ->  }
-//            itemView.setOnClickListener(listener)
             LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, view.findViewById(R.id.voltHolder))
             LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, view.findViewById(R.id.tempHolder))
-
-
         }
-
-//        fun bindPack(pack: Test.Pack){
-////            Set Name
-//            this.packName.setText(pack.packName)
-////            Set Voltage
-//            this.voltHolder.findViewById<TextView>(R.id.nameOfHeldValue).setText("Volts")
-//            this.voltHolder.findViewById<TextView>(R.id.value).setText(pack.currentVoltage.toString())
-////            Set Temp
-//            this.tempHolder.findViewById<TextView>(R.id.nameOfHeldValue).setText("Temp")
-//            this.tempHolder.findViewById<TextView>(R.id.value).setText(pack.averagePacktemp.toString())
-//
-//        }
-
 
     }
 
     // Create new views (invoked by the layout manager)
+    @SuppressLint("ResourceType")
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): PackViewHolder {
         // Create a new view, which defines the UI of the list item
-        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.pack_viewholder_layout, viewGroup, false)
+        val view = LayoutInflater.from(viewGroup.context)
+            .inflate(R.layout.pack_card_view, viewGroup, false)
 
-        return PackViewHolder(view).listen{position, type ->
+        return PackViewHolder(view).listen { position, type ->
             var whichPack = packs.get(position)
-            Toast.makeText(view.context,"You clicked ${whichPack.packName}",Toast.LENGTH_SHORT).show()
+
+            for (i in 0..whichPack.modulesCount -1) {
+                Logger.i("PackView holder", "module $i")
+
+                view.
+
+                var module = LayoutInflater.from(view.context).inflate(R.layout.module_view, null)
+
+
+                view.findViewById<CardView>(R.id.card_view).addView(
+                    module,
+                    view.findViewById<CardView>(R.id.card_view).childCount
+
+
+                )
+//                Set Cell 1
+                var c: View = LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, null)
+                c.id = i * 10 + 1
+                c.findViewById<TextView>(R.id.nameOfHeldValue).setText("Cell 1")
+                c.findViewById<TextView>(R.id.value).setText(whichPack.getModules(i).getCells(0).cellVolt.toString())
+                module.findViewById<ConstraintLayout>(R.id.cell1).addView(c)
+//                Set Cell 2
+                c = LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, null)
+                c.id = i * 10 + 2
+                c.findViewById<TextView>(R.id.nameOfHeldValue).setText("Cell 2")
+                c.findViewById<TextView>(R.id.value).setText(whichPack.getModules(i).getCells(1).cellVolt.toString())
+                module.findViewById<ConstraintLayout>(R.id.cell2).addView(c)
+
+                c = LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, null)
+                c.id = i * 10 + 3
+                c.findViewById<TextView>(R.id.nameOfHeldValue).setText("Cell 3")
+                c.findViewById<TextView>(R.id.value).setText(whichPack.getModules(i).getCells(2).cellVolt.toString())
+                module.findViewById<ConstraintLayout>(R.id.cell3).addView(c)
+
+                c = LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, null)
+                c.id = i * 10 + 4
+                c.findViewById<TextView>(R.id.nameOfHeldValue).setText("Cell 4")
+                c.findViewById<TextView>(R.id.value).setText(whichPack.getModules(i).getCells(3).cellVolt.toString())
+                module.findViewById<ConstraintLayout>(R.id.cell4).addView(c)
+
+                c = LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, null)
+                c.id = i * 10 + 5
+                c.findViewById<TextView>(R.id.nameOfHeldValue).setText("Cell 5")
+                c.findViewById<TextView>(R.id.value).setText(whichPack.getModules(i).getCells(4).cellVolt.toString())
+                module.findViewById<ConstraintLayout>(R.id.cell5).addView(c)
+
+                c = LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, null)
+                c.id = i * 10 + 6
+                c.findViewById<TextView>(R.id.nameOfHeldValue).setText("Cell 6")
+                c.findViewById<TextView>(R.id.value).setText(whichPack.getModules(i).getCells(5).cellVolt.toString())
+                module.findViewById<ConstraintLayout>(R.id.cell6).addView(c)
+                }
+            }
         }
-    }
 
     //Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(packViewHolder: PackViewHolder, position: Int) {
         //Get pack at this position
-        packViewHolder.pack = packs.get(position)
+        var pack = packs.get(position)
+        packViewHolder.pack = pack
         //Replace the contents of the view with that element
         packViewHolder.packName.setText(packViewHolder.pack.packName)
-        //TODO:make this pretty
-
+        packViewHolder.moduleCount.setText("${pack.modulesCount} Modules")
         packViewHolder.voltHolder.findViewById<TextView>(R.id.nameOfHeldValue).setText("Volts")
-        packViewHolder.voltHolder.findViewById<TextView>(R.id.value).setText(packViewHolder.pack.currentVoltage.toString())
+        packViewHolder.voltHolder.findViewById<TextView>(R.id.value).setText(pack.currentVoltage.toString())
         packViewHolder.tempHolder.findViewById<TextView>(R.id.nameOfHeldValue).setText("Temp")
-        packViewHolder.tempHolder.findViewById<TextView>(R.id.value).setText(packViewHolder.pack.averagePacktemp.toString())
+        packViewHolder.tempHolder.findViewById<TextView>(R.id.value).setText(pack.averagePacktemp.toString())
     }
 
 //    Return the size of the dataset (invoked by the layout manager)
     override fun getItemCount() = packs.size
 
-//    Adapted from https://stackoverflow.com/questions/29424944/recyclerview-itemclicklistener-in-kotlin
+//    OnClickListener : Adapted from https://stackoverflow.com/questions/29424944/recyclerview-itemclicklistener-in-kotlin
     fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T {
         itemView.setOnClickListener {
             event.invoke(getAdapterPosition(), getItemViewType())

@@ -17,6 +17,21 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="name" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/moduleCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/packName"
+        app:layout_constraintStart_toStartOf="@+id/packName"
+        app:layout_constraintTop_toBottomOf="@+id/packName">
+
+        <TextView
+            android:id="@+id/moduleCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </androidx.cardview.widget.CardView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/voltHolder"
         android:layout_width="80dp"
@@ -35,5 +50,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
+<!--    TODO: Add dropdown capability for modules -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
