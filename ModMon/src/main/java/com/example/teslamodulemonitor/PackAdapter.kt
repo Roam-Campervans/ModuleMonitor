@@ -5,8 +5,8 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
@@ -44,17 +44,11 @@ class PackAdapter(packs: ArrayList<Test.Pack>) : RecyclerView.Adapter<PackAdapte
             for (i in 0..whichPack.modulesCount -1) {
                 Logger.i("PackView holder", "module $i")
 
-                view.
 
-                var module = LayoutInflater.from(view.context).inflate(R.layout.module_view, null)
-
-
-                view.findViewById<CardView>(R.id.card_view).addView(
-                    module,
-                    view.findViewById<CardView>(R.id.card_view).childCount
+                var module = LayoutInflater.from(view.context).inflate(R.layout.module_view,null)
+                view.findViewById<LinearLayout>(R.id.moduleList).addView(module)
 
 
-                )
 //                Set Cell 1
                 var c: View = LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, null)
                 c.id = i * 10 + 1
