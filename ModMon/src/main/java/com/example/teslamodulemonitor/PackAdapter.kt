@@ -41,53 +41,33 @@ class PackAdapter(packs: ArrayList<Test.Pack>) : RecyclerView.Adapter<PackAdapte
         return PackViewHolder(view).listen { position, type ->
             var whichPack = packs.get(position)
 
-            for (i in 0..whichPack.modulesCount -1) {
+            for (i in 0..whichPack.modulesCount - 1) {
                 Logger.i("PackView holder", "module $i")
 
 
-                var module = LayoutInflater.from(view.context).inflate(R.layout.module_view,null)
+                var module = LayoutInflater.from(view.context).inflate(R.layout.module_view, null)
                 view.findViewById<LinearLayout>(R.id.moduleList).addView(module)
 
 
-//                Set Cell 1
-                var c: View = LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, null)
-                c.id = i * 10 + 1
-                c.findViewById<TextView>(R.id.nameOfHeldValue).setText("Cell 1")
-                c.findViewById<TextView>(R.id.value).setText(whichPack.getModules(i).getCells(0).cellVolt.toString())
-                module.findViewById<ConstraintLayout>(R.id.cell1).addView(c)
-//                Set Cell 2
-                c = LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, null)
-                c.id = i * 10 + 2
-                c.findViewById<TextView>(R.id.nameOfHeldValue).setText("Cell 2")
-                c.findViewById<TextView>(R.id.value).setText(whichPack.getModules(i).getCells(1).cellVolt.toString())
-                module.findViewById<ConstraintLayout>(R.id.cell2).addView(c)
-
-                c = LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, null)
-                c.id = i * 10 + 3
-                c.findViewById<TextView>(R.id.nameOfHeldValue).setText("Cell 3")
-                c.findViewById<TextView>(R.id.value).setText(whichPack.getModules(i).getCells(2).cellVolt.toString())
-                module.findViewById<ConstraintLayout>(R.id.cell3).addView(c)
-
-                c = LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, null)
-                c.id = i * 10 + 4
-                c.findViewById<TextView>(R.id.nameOfHeldValue).setText("Cell 4")
-                c.findViewById<TextView>(R.id.value).setText(whichPack.getModules(i).getCells(3).cellVolt.toString())
-                module.findViewById<ConstraintLayout>(R.id.cell4).addView(c)
-
-                c = LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, null)
-                c.id = i * 10 + 5
-                c.findViewById<TextView>(R.id.nameOfHeldValue).setText("Cell 5")
-                c.findViewById<TextView>(R.id.value).setText(whichPack.getModules(i).getCells(4).cellVolt.toString())
-                module.findViewById<ConstraintLayout>(R.id.cell5).addView(c)
-
-                c = LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, null)
-                c.id = i * 10 + 6
-                c.findViewById<TextView>(R.id.nameOfHeldValue).setText("Cell 6")
-                c.findViewById<TextView>(R.id.value).setText(whichPack.getModules(i).getCells(5).cellVolt.toString())
-                module.findViewById<ConstraintLayout>(R.id.cell6).addView(c)
+                listOf<Int>(
+                    R.id.cell1,
+                    R.id.cell2,
+                    R.id.cell3,
+                    R.id.cell4,
+                    R.id.cell5,
+                    R.id.cell6
+                ).forEachIndexed { index, cellID ->
+                    var c: View = LayoutInflater.from(view.context)
+                        .inflate(R.layout.fragment_valueholder, null)
+                    c.id = i * 10 + 1
+                    c.findViewById<TextView>(R.id.nameOfHeldValue).setText("Cell ${index + 1}")
+                    c.findViewById<TextView>(R.id.value)
+                        .setText(whichPack.getModules(i).getCells(0).cellVolt.toString())
+                    module.findViewById<ConstraintLayout>(cellID).addView(c)
                 }
             }
         }
+    }
 
     //Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(packViewHolder: PackViewHolder, position: Int) {
