@@ -59,7 +59,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/voltHolder"
-        android:paddingVertical="5dp">
+        android:paddingVertical="5dp"
+        android:visibility="gone">
 
     </LinearLayout>
     <!--    TODO: Add dropdown capability for modules -->

@@ -5,12 +5,8 @@
     android:id="@+id/moduleView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="5dp"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
     app:cardBackgroundColor="#FFFFFF"
-    app:cardElevation="5dp"
+    app:cardElevation="15dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout

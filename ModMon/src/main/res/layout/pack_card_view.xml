@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/black"
     >
 
     <!-- A CardView that contains a TextView -->
@@ -14,7 +15,7 @@
         android:layout_margin="2dp"
         android:animateLayoutChanges="true"
         card_view:cardCornerRadius="5dp"
-        card_view:cardElevation="10dp">
+        card_view:cardElevation="50dp">
 
         <include layout="@layout/pack_viewholder_layout"></include>
 
