@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
             // pass textView and Pack to render function
             packs.add(pack)
             displayPackValues(pack)
+            Logger.i("packStreamTest", "Added ${pack.packName} to the view. pack Array = ${packs.size}")
         }
     }
 
@@ -86,6 +87,8 @@ class MainActivity : AppCompatActivity() {
         val file = File(filesDir, "protoOut")
         if (file.exists()) {
             file.delete()
+            packs.clear()
+            Logger.i("onDestroy", "Packs size is ${packs.size}")
             Toast.makeText(this,"Proto Deleted",Toast.LENGTH_SHORT).show()
         }
     }
