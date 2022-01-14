@@ -27,7 +27,9 @@ class addTestPack : AppCompatActivity() {
                 .setPackName("Test Pack${numOfPacks}")
                 .setNumberOfModules(numberOfTestMods)
                 .setAveragePacktemp(modTemp)
-                .setCurrentVoltage(cellVolt.times(6))
+                .setCurrentVoltage((cellVolt.times(6)))
+
+
         modMaker(numberOfTestMods, cellVolt, modTemp, newPack)
 
 
@@ -39,7 +41,7 @@ class addTestPack : AppCompatActivity() {
 
 
 //*************************** Helper Functions ***********************************
-
+//
 
     /** Encode and write to local file for decoding */
     private fun write(pack: Test.Pack){

@@ -3,13 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="ModMon/src/main/res/layout/activity_add_test_pack.xml" value="0.37604166666666666" />
         <entry key="ModMon/src/main/res/layout/activity_main.xml" value="0.325" />
+        <entry key="ModMon/src/main/res/layout/activity_pack_settings.xml" value="0.3229166666666667" />
+        <entry key="ModMon/src/main/res/layout/fragment_blank.xml" value="0.3536458333333333" />
         <entry key="ModMon/src/main/res/layout/fragment_pack.xml" value="0.5801526717557252" />
         <entry key="ModMon/src/main/res/layout/fragment_value_holder.xml" value="0.55" />
-        <entry key="ModMon/src/main/res/layout/fragment_valueholder.xml" value="1.9634158817228748" />
+        <entry key="ModMon/src/main/res/layout/fragment_valueholder.xml" value="0.8810679611650486" />
         <entry key="ModMon/src/main/res/layout/fragment_volt.xml" value="0.3260416666666667" />
-        <entry key="ModMon/src/main/res/layout/pack_viewholder_layout.xml" value="0.2546875" />
+        <entry key="ModMon/src/main/res/layout/module_view.xml" value="0.5507537688442211" />
+        <entry key="ModMon/src/main/res/layout/pack_card_view.xml" value="0.5127118644067796" />
+        <entry key="ModMon/src/main/res/layout/pack_viewholder_layout.xml" value="0.3697555381290056" />
       </map>
     </option>
   </component>

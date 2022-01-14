@@ -6,4 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".PackSettings">
 
+<!--    TODO: Add layout for settings page -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
