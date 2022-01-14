@@ -27,8 +27,7 @@ class PackAdapter(packs: ArrayList<Pack>) : RecyclerView.Adapter<PackAdapter.Pac
         var modules : LinearLayout = view.findViewById(R.id.moduleList)
 
         init {
-//            LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, voltHolder)
-            voltHolder.addView(Valueholder(view.context, "Volts", pack.currentVoltage))
+            LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, voltHolder)
             LayoutInflater.from(view.context).inflate(R.layout.fragment_valueholder, tempHolder)
         }
     }
@@ -53,31 +52,37 @@ class PackAdapter(packs: ArrayList<Pack>) : RecyclerView.Adapter<PackAdapter.Pac
 
 
     //Replace the contents of a view (invoked by the layout manager)
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(packViewHolder: PackViewHolder, position: Int) {
         //Get pack at this position
-        packViewHolder.pack = packs.get(position)
 
-
+        packViewHolder.pack = packs[position]
         //Replace the contents of the view with that element
-        packViewHolder.packName.setText(packViewHolder.pack.packName)
-        packViewHolder.moduleCount.setText("${packViewHolder.pack.modulesCount} Modules")
+        packViewHolder.packName.text = packViewHolder.pack.packName
+        // Set number of Modules text
+        packViewHolder.moduleCount.text = "${packViewHolder.pack.modulesCount} Modules"
 
-        packViewHolder.voltHolder.findViewById<TextView>(R.id.nameOfHeldValue).setText("Volts")
-        packViewHolder.voltHolder.findViewById<TextView>(R.id.value)
-            .setText(packViewHolder.pack.currentVoltage.toString())
+        // Set Value name to  Volts  and value for Voltage of the module
+        packViewHolder.voltHolder.findViewById<TextView>(R.id.nameOfHeldValue).setText(R.string.volts)
+        packViewHolder.voltHolder.findViewById<TextView>(R.id.value).text = "%.2f".format(packViewHolder.pack.currentVoltage)
 
-        packViewHolder.tempHolder.findViewById<TextView>(R.id.nameOfHeldValue).setText("Temp")
+        // Set Value name to Temp  and value for temperature of the module
+        packViewHolder.tempHolder.findViewById<TextView>(R.id.nameOfHeldValue)
+            .setText(R.string.temp)
         packViewHolder.tempHolder.findViewById<TextView>(R.id.value)
             .setText(packViewHolder.pack.averagePacktemp.toString())
 
+        //Generate the Module Cards
         if (packViewHolder.modules.childCount < packViewHolder.pack.modulesCount) {
-            for (i in 0..packViewHolder.pack.modulesCount - 1) {
+            for (i in 0 until packViewHolder.pack.modulesCount) {
 
-                var module = LayoutInflater.from(packViewHolder.itemView.context)
-                    .inflate(R.layout.module_view, null)
-                module.findViewById<TextView>(R.id.modNumber).setText("Module ${i + 1}")
+                var module = LayoutInflater.from(packViewHolder.itemView.context).inflate(R.layout.module_view, null)
+
+                module.findViewById<TextView>(R.id.modNumber).text = "Module ${i + 1}"
+
                 packViewHolder.modules.addView(module)
 
+                //Generate the Cells for the module card
                 listOf<Int>(
                     R.id.cell1,
                     R.id.cell2,
@@ -88,10 +93,11 @@ class PackAdapter(packs: ArrayList<Pack>) : RecyclerView.Adapter<PackAdapter.Pac
                 ).forEachIndexed { index, cellID ->
                     var c: View = LayoutInflater.from(module.context)
                         .inflate(R.layout.fragment_valueholder, null)
+
+                    // Set cell Id, Name, and Value then add it to the view
                     c.id = i * 10 + 1
-                    c.findViewById<TextView>(R.id.nameOfHeldValue).setText("Cell ${index + 1}")
-                    c.findViewById<TextView>(R.id.value)
-                        .setText(packViewHolder.pack.getModules(i).getCells(0).cellVolt.toString())
+                    c.findViewById<TextView>(R.id.nameOfHeldValue).text = "Cell ${index + 1}"
+                    c.findViewById<TextView>(R.id.value).text = packViewHolder.pack.getModules(i).getCells(index).cellVolt.toString()
                     module.findViewById<ConstraintLayout>(cellID).addView(c)
                 }
             }
@@ -99,6 +105,7 @@ class PackAdapter(packs: ArrayList<Pack>) : RecyclerView.Adapter<PackAdapter.Pac
     }
 
 
+    fun Float.format(digits: Int) = "%.${digits}f".format(this)
 
 //    Return the size of the dataset (invoked by the layout manager)
     override fun getItemCount() = packs.size
