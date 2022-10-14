@@ -6,7 +6,7 @@ Goals: Add intergration for IOT van appliances.
 
 [MockPlus mockup of app](https://app.mockplus.com/run/rp/rRPKyTS8fnoYg/cGytQlHAEDWt-?ps=1&ha=0&la=0&fc=0&dt=android&out=1)
 
-<img src="https://github.com/ahrenswett/ModuleMonitor/blob/306c3c883606dc2d47e176781c122e911bfdfcb0/markdownFiles/mockupGIf.gif" alt="MockupGif" width="300"/>
+<img src="https://github.com/ahrenswett/ModuleMonitor/blob/306c3c883606dc2d47e176781c122e911bfdfcb0/markdownFiles/mockupGIf.gif" alt="MockupGif" width="300">
 
 
 
